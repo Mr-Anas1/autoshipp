@@ -2,8 +2,11 @@ import { Package, Activity, TrendingDown } from 'lucide-react';
 
 export default function DashboardPreview({ theme, isDark }) {
    return (
-      <section className="max-w-6xl mx-auto px-6 mb-32">
-         <div className={`rounded-[2rem] border p-2 p-md-4 transition-all duration-700 ${isDark ? 'bg-white/5 border-white/10 shadow-[0_0_100px_rgba(139,92,246,0.1)]' : 'bg-white border-slate-200 shadow-2xl'}`}>
+      <section className="max-w-6xl mx-auto px-6 mb-32 relative">
+         <div className="absolute top-[-5%] left-[-5%] w-64 h-64 bg-violet-600/10 blur-[100px] rounded-full gsap-float pointer-events-none -z-10"></div>
+         <div className="absolute bottom-[-10%] right-[-5%] w-80 h-80 bg-blue-500/10 blur-[100px] rounded-full gsap-float pointer-events-none -z-10" style={{ animationDelay: '-1s' }}></div>
+         
+         <div className={`gsap-scale-up rounded-[2rem] border p-2 p-md-4 transition-all duration-700 ${isDark ? 'bg-white/5 border-white/10 shadow-[0_0_100px_rgba(139,92,246,0.1)]' : 'bg-white border-slate-200 shadow-2xl'}`}>
             <div className={`rounded-[1.5rem] overflow-hidden ${isDark ? 'bg-[#0a0a16]' : 'bg-slate-50'}`}>
                {/* Mock Header */}
                <div className={`h-14 flex items-center px-6 justify-between border-b ${isDark ? 'border-white/5 bg-white/5' : 'border-slate-200 bg-white'}`}>
@@ -16,7 +19,7 @@ export default function DashboardPreview({ theme, isDark }) {
                </div>
                {/* Mock Content */}
                <div className="p-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-                  <div className="col-span-2 space-y-4">
+                  <div className="col-span-2 space-y-4 gsap-stagger-grid">
                      <div className="flex items-center gap-3 mb-4">
                         <Activity size={20} className={theme.accent} />
                         <h4 className={`font-bold ${theme.heading}`}>Active Verification Stream</h4>
@@ -48,12 +51,15 @@ export default function DashboardPreview({ theme, isDark }) {
                         </div>
                      ))}
                   </div>
-                  <div className="space-y-6">
-                     <div className={`p-8 rounded-3xl border transition-all ${isDark ? 'bg-violet-600/10 border-violet-500/20' : 'bg-blue-600 text-white'}`}>
-                        <div className="text-xs font-bold uppercase opacity-80 mb-2">Total Savings</div>
-                        <div className="text-4xl font-black mb-4 tracking-tighter">₹84,200</div>
-                        <div className="flex items-center gap-2 text-sm font-bold">
-                           <TrendingDown size={16} /> 12% RTO Drop
+                  <div className="space-y-6 gsap-stagger-grid">
+                     <div className={`p-8 rounded-3xl border transition-all ${isDark ? 'bg-violet-600/10 border-violet-500/20' : 'bg-blue-600 text-white'} relative overflow-hidden`}>
+                        <div className="absolute top-[-20%] right-[-10%] opacity-20"><TrendingDown size={140} /></div>
+                        <div className="relative z-10">
+                          <div className="text-xs font-bold uppercase opacity-80 mb-2">Total Savings</div>
+                          <div className="text-4xl font-black mb-4 tracking-tighter">₹84,200</div>
+                          <div className="flex items-center gap-2 text-sm font-bold">
+                             <TrendingDown size={16} /> 12% RTO Drop
+                          </div>
                         </div>
                      </div>
                      <div className={`p-8 rounded-3xl border transition-all ${theme.card}`}>

@@ -12,247 +12,150 @@ export default function useGSAPAnimations() {
 
   useEffect(() => {
     if (!containerRef.current) return;
-
-    // Smooth scrolling setup
     const scrollContainer = containerRef.current;
-    
-    // Fade in animations for sections
+
+    // 1. Premium Section Reveal
     const sections = scrollContainer.querySelectorAll('section');
-    
-    sections.forEach((section, index) => {
+    sections.forEach((section) => {
       gsap.fromTo(section, 
         {
           opacity: 0,
-          y: 50,
+          y: 40,
         },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
-          delay: index * 0.1,
+          duration: 1.2,
           ease: "power3.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-    });
-
-    // Hero section animations
-    const heroTitle = scrollContainer.querySelector('h1');
-    const heroSubtitle = scrollContainer.querySelector('p');
-    const heroButtons = scrollContainer.querySelectorAll('button');
-    const heroBadge = scrollContainer.querySelector('.inline-flex');
-
-    if (heroTitle) {
-      gsap.fromTo(heroTitle,
-        {
-          opacity: 0,
-          y: 30,
-          scale: 0.95
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1.2,
-          delay: 0.3,
-          ease: "power3.out"
-        }
-      );
-    }
-
-    if (heroBadge) {
-      gsap.fromTo(heroBadge,
-        {
-          opacity: 0,
-          y: -20,
-          scale: 0.9
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.8,
-          delay: 0.1,
-          ease: "power2.out"
-        }
-      );
-    }
-
-    if (heroSubtitle) {
-      gsap.fromTo(heroSubtitle,
-        {
-          opacity: 0,
-          y: 20
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          delay: 0.5,
-          ease: "power2.out"
-        }
-      );
-    }
-
-    if (heroButtons.length > 0) {
-      gsap.fromTo(heroButtons,
-        {
-          opacity: 0,
-          y: 20,
-          scale: 0.95
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.8,
-          delay: 0.7,
-          stagger: 0.1,
-          ease: "power2.out"
-        }
-      );
-    }
-
-    // Dashboard preview animation
-    const dashboard = scrollContainer.querySelector('.rounded-\\[2rem\\]');
-    if (dashboard) {
-      gsap.fromTo(dashboard,
-        {
-          opacity: 0,
-          y: 40,
-          scale: 0.98
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1,
-          delay: 0.3,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: dashboard,
             start: "top 85%",
             toggleActions: "play none none reverse"
           }
         }
       );
-    }
+    });
 
-    // Problem cards stagger animation
-    const problemCards = scrollContainer.querySelectorAll('.grid-cols-1.md\\:grid-cols-3 > div');
-    if (problemCards.length > 0) {
-      gsap.fromTo(problemCards,
-        {
-          opacity: 0,
-          y: 30,
-          scale: 0.95
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: problemCards[0],
-            start: "top 80%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-    }
-
-    // Solution bento grid animation
-    const solutionCards = scrollContainer.querySelectorAll('.md\\:col-span-8, .md\\:col-span-6, .md\\:col-span-4');
-    if (solutionCards.length > 0) {
-      gsap.fromTo(solutionCards,
-        {
-          opacity: 0,
-          y: 40,
-          scale: 0.98
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1,
-          stagger: 0.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: solutionCards[0],
-            start: "top 75%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-    }
-
-    // Pricing card animation
-    const pricingCard = scrollContainer.querySelector('.rounded-\\[3rem\\]');
-    if (pricingCard) {
-      gsap.fromTo(pricingCard,
-        {
-          opacity: 0,
-          y: 30,
-          scale: 0.95
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: pricingCard,
-            start: "top 80%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-    }
-
-    // CTA section animation
-    const ctaSection = scrollContainer.querySelector('.py-44');
-    if (ctaSection) {
-      gsap.fromTo(ctaSection,
-        {
-          opacity: 0,
-          scale: 0.98
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 1.5,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ctaSection,
-            start: "top 70%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-    }
-
-    // Parallax effect for background glows
+    // 2. Parallax Background Glows
     const glows = scrollContainer.querySelectorAll('.fixed.inset-0 > div');
     glows.forEach((glow, index) => {
       gsap.to(glow, {
-        yPercent: index === 0 ? -20 : 20,
+        yPercent: index === 0 ? -30 : 30,
+        xPercent: index === 0 ? 10 : -10,
+        scale: index === 0 ? 1.2 : 0.8,
         ease: "none",
         scrollTrigger: {
           trigger: scrollContainer,
           start: "top top",
           end: "bottom top",
-          scrub: 1
+          scrub: 1.5
         }
       });
     });
+
+    // 3. Floating Animations (Continuous)
+    const floaters = scrollContainer.querySelectorAll('.gsap-float');
+    floaters.forEach((floater, i) => {
+      gsap.to(floater, {
+        y: "-=15",
+        rotation: i % 2 === 0 ? 1.5 : -1.5,
+        duration: 3 + (i * 0.5),
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1
+      });
+    });
+
+    // 4. Staggered Grid Reveal
+    const grids = scrollContainer.querySelectorAll('.gsap-stagger-grid');
+    grids.forEach(grid => {
+      const items = grid.children;
+      gsap.fromTo(items, 
+        { opacity: 0, y: 50, scale: 0.95 },
+        { 
+          opacity: 1, y: 0, scale: 1, 
+          duration: 1, 
+          stagger: 0.15, 
+          ease: "back.out(1.2)",
+          scrollTrigger: {
+            trigger: grid,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    });
+
+    // 6. Scale-up reveals (Dashboard, Cards)
+    const scaleUps = scrollContainer.querySelectorAll('.gsap-scale-up');
+    scaleUps.forEach(elem => {
+      gsap.fromTo(elem,
+        { opacity: 0, scale: 0.92, y: 30 },
+        { 
+          opacity: 1, scale: 1, y: 0,
+          duration: 1.2, 
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: elem,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    });
+
+    // 7. Parallax Items within Layout
+    const parallaxItems = scrollContainer.querySelectorAll('.gsap-parallax');
+    parallaxItems.forEach(elem => {
+      const speed = parseFloat(elem.dataset.speed || 30);
+      gsap.fromTo(elem,
+        { y: speed },
+        {
+          y: -speed,
+          ease: "none",
+          scrollTrigger: {
+            trigger: elem.parentElement,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        }
+      );
+    });
+
+    // 8. Custom Slide In Content (CTA text etc.)
+    const slideIns = scrollContainer.querySelectorAll('.gsap-slide-in');
+    slideIns.forEach(elem => {
+      gsap.fromTo(elem,
+        { opacity: 0, x: -40 },
+        { 
+          opacity: 1, x: 0, 
+          duration: 1, ease: "power3.out",
+          scrollTrigger: {
+            trigger: elem,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    });
+
+    // 9. CTA Background Text Scroll (huge parallax horizontally)
+    const ctaBgText = scrollContainer.querySelectorAll('.gsap-cta-bg-text');
+    if(ctaBgText.length > 0) {
+       gsap.fromTo(ctaBgText, 
+         { x: "5%" },
+         {
+           x: "-15%",
+           ease: "none",
+           scrollTrigger: {
+             trigger: ctaBgText[0].closest('section'),
+             start: "top bottom",
+             end: "bottom top",
+             scrub: 1
+           }
+         });
+    }
 
     // Cleanup
     return () => {

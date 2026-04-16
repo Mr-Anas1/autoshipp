@@ -2,17 +2,20 @@ import { PhoneCall, MessageCircle, Globe, Zap } from 'lucide-react';
 
 export default function SolutionSection({ theme, isDark }) {
   return (
-    <section id="solution" className="py-32">
-       <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="text-center mb-24">
+    <section id="solution" className="py-32 relative overflow-hidden">
+       <div className="absolute top-1/2 left-[-10%] w-[500px] h-[500px] bg-violet-500/5 blur-[120px] rounded-full pointer-events-none gsap-float -z-10" data-speed="-20"></div>
+       <div className="absolute top-10 right-[-10%] w-[400px] h-[400px] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none gsap-float -z-10" style={{ animationDelay: '-2s' }}></div>
+
+       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+          <div className="text-center mb-24 gsap-slide-in">
              <h2 className={`text-4xl md:text-6xl font-black ${theme.heading} tracking-tighter`}>Built for hyper-growth.</h2>
              <p className="text-xl text-slate-500 mt-6 font-medium">Verify, automate, and dominate the Indian market.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px] gsap-stagger-grid">
              {/* AI CALLS */}
-             <div className={`md:col-span-8 rounded-[2.5rem] p-12 border relative overflow-hidden flex flex-col justify-end transition-all ${theme.card}`}>
-                <div className={`absolute top-0 right-0 p-12 opacity-10 ${theme.accent}`}><PhoneCall size={200} /></div>
+             <div className={`md:col-span-8 rounded-[2.5rem] p-12 border relative overflow-hidden flex flex-col justify-end transition-all ${theme.card} hover:-translate-y-1 duration-300`}>
+                <div className={`absolute top-0 right-0 p-12 opacity-10 ${theme.accent} gsap-parallax`} data-speed="20"><PhoneCall size={200} /></div>
                 <div className="relative z-10 max-w-lg">
                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-white bg-gradient-to-br ${theme.accentGradient}`}>
                       <PhoneCall size={24} />
@@ -23,7 +26,7 @@ export default function SolutionSection({ theme, isDark }) {
              </div>
 
              {/* WHATSAPP */}
-             <div className={`md:col-span-4 rounded-[2.5rem] p-10 border transition-all flex flex-col justify-center ${theme.card}`}>
+             <div className={`md:col-span-4 rounded-[2.5rem] p-10 border transition-all flex flex-col justify-center ${theme.card} hover:-translate-y-1 duration-300`}>
                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-green-500/10 text-green-500`}>
                    <MessageCircle size={28} />
                 </div>
@@ -32,7 +35,7 @@ export default function SolutionSection({ theme, isDark }) {
              </div>
 
              {/* COURIER */}
-             <div className={`md:col-span-6 rounded-[2.5rem] p-10 border transition-all flex items-center gap-8 ${theme.card}`}>
+             <div className={`md:col-span-6 rounded-[2.5rem] p-10 border transition-all flex items-center gap-8 ${theme.card} hover:-translate-y-1 duration-300`}>
                 <div className={`w-20 h-20 rounded-3xl flex items-center justify-center shrink-0 bg-blue-500/10 text-blue-500`}>
                    <Globe size={40} />
                 </div>
@@ -43,7 +46,7 @@ export default function SolutionSection({ theme, isDark }) {
              </div>
 
              {/* AUTOMATION */}
-             <div className={`md:col-span-6 rounded-[2.5rem] p-10 border transition-all flex items-center gap-8 ${isDark ? 'bg-violet-600/10 border-violet-500/20' : 'bg-blue-600 text-white'}`}>
+             <div className={`md:col-span-6 rounded-[2.5rem] p-10 border transition-all flex items-center gap-8 ${isDark ? 'bg-violet-600/10 border-violet-500/20' : 'bg-blue-600 text-white'} hover:-translate-y-1 duration-300`}>
                 <div className={`w-20 h-20 rounded-3xl flex items-center justify-center shrink-0 ${isDark ? 'bg-violet-500/20' : 'bg-white/20'}`}>
                    <Zap size={40} className="text-white" />
                 </div>
