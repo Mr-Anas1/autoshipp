@@ -8,7 +8,7 @@ const MOCK_SETTINGS = {
   companyName: 'FabIndia Direct',
   contactEmail: 'ops@fabindia.com',
   warehouseWhatsApp: '+91 98765 43210',
-  apiKey: 'sk_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  apiKey: 'api_live_demo_key_placeholder_xxxxxxxxxx',
 };
 
 export default function BrandSettingsPage() {
