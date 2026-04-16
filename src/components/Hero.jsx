@@ -13,27 +13,26 @@ export default function Hero({ theme, isDark }) {
     tl.from(".gsap-hero-badge", {
       y: -20,
       opacity: 0,
-      duration: 1,
-      delay: 0.2
+      duration: 0.8
     })
       .from(".gsap-hero-title", {
         y: 50,
         opacity: 0,
-        duration: 1.2,
+        duration: 1,
         stagger: 0.1
-      }, "-=0.6")
+      }, "-=0.4")
       .from(".gsap-hero-subtitle", {
         y: 30,
         opacity: 0,
-        duration: 1
-      }, "-=0.8")
+        duration: 0.8
+      }, "-=0.6")
       .from(".gsap-hero-btn", {
         scale: 0.9,
         opacity: 0,
-        duration: 0.8,
+        duration: 0.6,
         stagger: 0.15,
         ease: "back.out(1.7)"
-      }, "-=0.7");
+      }, "-=0.5");
 
     // 2. Floating Animation for Blobs
     gsap.to(".gsap-float", {
@@ -74,7 +73,7 @@ export default function Hero({ theme, isDark }) {
       className="max-w-7xl mx-auto px-6 md:px-12 pt-44 pb-20 text-center relative overflow-hidden"
     >
       <div className="relative z-10">
-        <div className={`gsap-hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-8 text-sm font-bold uppercase tracking-wider transition-all ${isDark ? 'bg-violet-500/10 border-violet-500/20 text-violet-400' : 'bg-blue-50 border-blue-100 text-blue-600'}`}>
+        <div className={` inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-8 text-sm font-bold uppercase tracking-wider transition-all ${isDark ? 'bg-violet-500/10 border-violet-500/20 text-violet-400' : 'bg-blue-50 border-blue-100 text-blue-600'}`}>
           <Layers size={14} />
           Stop Losing COD Profits
         </div>
