@@ -5,7 +5,7 @@ export default function PricingSection({ theme, isDark }) {
       <section id="pricing" className={`py-32 border-y transition-colors ${isDark ? 'bg-slate-900/20 border-white/5' : 'bg-slate-100/50 border-slate-200'}`}>
          <div className="max-w-7xl mx-auto px-6 md:px-12">
             <div className="text-center max-w-2xl mx-auto mb-20">
-               <h2 className={`text-4xl md:text-6xl font-black ${theme.heading} mb-6 tracking-tighter`}>¥4 per confirmed order.</h2>
+               <h2 className={`text-4xl md:text-6xl font-black ${theme.heading} mb-6 tracking-tighter`}>₹4 per confirmed order.</h2>
                <p className="text-xl text-slate-500 font-medium">No setup fees. No monthly subscriptions. Just pay for results.</p>
             </div>
 
@@ -14,7 +14,7 @@ export default function PricingSection({ theme, isDark }) {
                   <div className={`absolute top-0 right-0 px-8 py-2 font-black text-xs uppercase transition-colors ${isDark ? 'bg-violet-600 text-white' : 'bg-blue-600 text-white'}`}>Popular Plan</div>
 
                   <div className="flex items-baseline gap-2 mb-10">
-                     <span className={`text-7xl font-black tracking-tighter ${theme.heading}`}>¥4</span>
+                     <span className={`text-7xl font-black tracking-tighter ${theme.heading}`}>₹4</span>
                      <span className="text-slate-500 font-bold">/ confirmation</span>
                   </div>
 

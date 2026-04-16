@@ -8,7 +8,7 @@ export default function ProblemSection({ theme, isDark }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {[
             { icon: <TrendingDown size={40} className="text-red-500" />, stat: "25%", label: "Average RTO Rate", desc: "1 in 4 orders are fake or undelivered, burning your marketing budget." },
-            { icon: <Activity size={40} className="text-orange-500" />, stat: "¥150", label: "Lost per Return", desc: "Every RTO costs you double in shipping and logistics overhead." },
+            { icon: <Activity size={40} className="text-orange-500" />, stat: "₹150", label: "Lost per Return", desc: "Every RTO costs you double in shipping and logistics overhead." },
             { icon: <Clock size={40} className="text-amber-500" />, stat: "10 Mins", label: "Manual Delay", desc: "Confirming orders manually is slow, error-prone, and expensive to scale." },
           ].map((item, i) => (
             <div key={i} className={`p-10 rounded-3xl border text-left transition-all hover:scale-105 duration-300 ${theme.card}`}>

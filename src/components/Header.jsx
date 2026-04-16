@@ -1,4 +1,5 @@
 import { Sun, Moon, Zap, Layers } from 'lucide-react';
+import { gsapSmoothScroll } from '../utils/smoothScroll';
 
 export default function Header({ isScrolled, isDark, setIsDark, theme }) {
   return (
@@ -10,17 +11,41 @@ export default function Header({ isScrolled, isDark, setIsDark, theme }) {
           </div>
           Autoship
         </div>
-        
+
         <div className="hidden md:flex items-center gap-10 text-sm font-semibold">
-          <a href="#problem" className={`transition-colors hover:${theme.accent}`}>Problem</a>
-          <a href="#solution" className={`transition-colors hover:${theme.accent}`}>Solution</a>
-          <a href="#how-it-works" className={`transition-colors hover:${theme.accent}`}>Flow</a>
-          <a href="#pricing" className={`transition-colors hover:${theme.accent}`}>Pricing</a>
+          <button
+            onClick={() => gsapSmoothScroll('#problem')}
+            className={`transition-colors hover:${theme.accent} cursor-pointer`}
+            type="button"
+          >
+            Problem
+          </button>
+          <button
+            onClick={() => gsapSmoothScroll('#solution')}
+            className={`transition-colors hover:${theme.accent} cursor-pointer`}
+            type="button"
+          >
+            Solution
+          </button>
+          <button
+            onClick={() => gsapSmoothScroll('#how-it-works')}
+            className={`transition-colors hover:${theme.accent} cursor-pointer`}
+            type="button"
+          >
+            Flow
+          </button>
+          <button
+            onClick={() => gsapSmoothScroll('#pricing')}
+            className={`transition-colors hover:${theme.accent} cursor-pointer`}
+            type="button"
+          >
+            Pricing
+          </button>
         </div>
 
         <div className="flex items-center gap-4">
-          <button 
-            onClick={() => setIsDark(!isDark)} 
+          <button
+            onClick={() => setIsDark(!isDark)}
             className={`p-2.5 rounded-full transition-all ${isDark ? 'bg-white/5 text-violet-400 hover:bg-white/10' : 'bg-slate-100 text-blue-600 hover:bg-slate-200'}`}
           >
             {isDark ? <Sun size={18} /> : <Moon size={18} />}

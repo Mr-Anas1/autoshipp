@@ -10,11 +10,19 @@ import PricingSection from '../components/PricingSection';
 import CTASection from '../components/CTASection';
 import Footer from '../components/Footer';
 import AmbientGlows from '../components/AmbientGlows';
+import CustomCursor from '../components/CustomCursor';
+import LoadingScreen from '../components/LoadingScreen';
+import useGSAPAnimations from '../hooks/useGSAPAnimations';
+import useSmoothScroll from '../hooks/useSmoothScroll';
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDark, setIsDark] = useState(true);
   const [mounted, setMounted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const containerRef = useGSAPAnimations();
+
+  useSmoothScroll({ enabled: !isLoading });
 
   useEffect(() => {
     setMounted(true);
@@ -39,24 +47,29 @@ export default function Home() {
     accentGradient: isDark ? 'from-violet-500 to-fuchsia-500' : 'from-blue-600 to-indigo-600',
   };
 
+  if (isLoading) {
+    return <LoadingScreen onComplete={() => setIsLoading(false)} />;
+  }
+
   if (!mounted) {
-  return (
-    <div className="min-h-screen bg-[#030014] text-slate-300 font-sans selection:bg-violet-500 selection:text-white overflow-x-hidden">
-      <div className="animate-pulse">
-        <div className="h-20 bg-white/5"></div>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 pt-44 pb-20">
-          <div className="h-32 bg-white/10 rounded-2xl mb-8"></div>
-          <div className="h-20 bg-white/10 rounded-2xl mb-4"></div>
-          <div className="h-96 bg-white/5 rounded-3xl"></div>
+    return (
+      <div className="min-h-screen bg-[#030014] text-slate-300 font-sans selection:bg-violet-500 selection:text-white overflow-x-hidden">
+        <div className="animate-pulse">
+          <div className="h-20 bg-white/5"></div>
+          <div className="max-w-7xl mx-auto px-6 md:px-12 pt-44 pb-20">
+            <div className="h-32 bg-white/10 rounded-2xl mb-8"></div>
+            <div className="h-20 bg-white/10 rounded-2xl mb-4"></div>
+            <div className="h-96 bg-white/5 rounded-3xl"></div>
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
   return (
     <div className={isDark ? 'dark' : ''}>
-      <div className={`min-h-screen ${theme.bg} ${theme.text} font-sans selection:bg-violet-500 selection:text-white overflow-x-hidden transition-colors duration-700`}>
+      <CustomCursor />
+      <div ref={containerRef} className={`min-h-screen ${theme.bg} ${theme.text} font-sans selection:bg-violet-500 selection:text-white overflow-x-hidden transition-colors duration-700 scroll-smooth`}>
         
         <AmbientGlows theme={theme} isDark={isDark} />
         
@@ -71,6 +84,7 @@ export default function Home() {
           <Hero theme={theme} isDark={isDark} />
           <DashboardPreview theme={theme} isDark={isDark} />
           <ProblemSection theme={theme} isDark={isDark} />
+          <div id="how-it-works" />
           <SolutionSection theme={theme} isDark={isDark} />
           <PricingSection theme={theme} isDark={isDark} />
           <CTASection theme={theme} isDark={isDark} />
