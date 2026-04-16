@@ -73,7 +73,7 @@ export default function Hero({ theme, isDark }) {
       className="max-w-7xl mx-auto px-6 md:px-12 pt-44 pb-20 text-center relative overflow-hidden"
     >
       <div className="relative z-10">
-        <div className={` inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-8 text-sm font-bold uppercase tracking-wider transition-all ${isDark ? 'bg-violet-500/10 border-violet-500/20 text-violet-400' : 'bg-blue-50 border-blue-100 text-blue-600'}`}>
+        <div className={`gsap-hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-8 text-sm font-bold uppercase tracking-wider transition-all ${isDark ? 'bg-violet-500/10 border-violet-500/20 text-violet-400' : 'bg-blue-50 border-blue-100 text-blue-600'}`}>
           <Layers size={14} />
           Stop Losing COD Profits
         </div>
