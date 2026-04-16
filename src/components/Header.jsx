@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import Link from 'next/link';
 import { Sun, Moon, Zap, Menu, X } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -96,6 +97,12 @@ export default function Header({ isScrolled, isDark, setIsDark, theme }) {
             {isDark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
 
+          <Link
+            href="/login"
+            className={`hidden sm:block text-sm font-black px-5 py-2.5 rounded-full border transition-all active:scale-95 ${isDark ? 'border-white/10 text-slate-300 hover:border-violet-500/50 hover:text-white' : 'border-slate-200 text-slate-600 hover:border-blue-400 hover:text-blue-700'}`}
+          >
+            Sign in
+          </Link>
           <button className={`hidden sm:block text-sm font-black px-8 py-3 rounded-full transition-all active:scale-95 shadow-lg ${theme.primaryBtn}`}>
             Book Demo
           </button>
@@ -126,6 +133,13 @@ export default function Header({ isScrolled, isDark, setIsDark, theme }) {
             {item}
           </button>
         ))}
+        <Link
+          href="/login"
+          onClick={toggleMenu}
+          className={`gsap-mobile-link text-2xl font-black tracking-tighter border-b pb-2 ${isDark ? 'text-slate-400 border-white/10 hover:text-white' : 'text-slate-500 border-slate-200 hover:text-slate-900'}`}
+        >
+          Sign in →
+        </Link>
         <button
           onClick={toggleMenu}
           className={`gsap-mobile-link mt-4 px-10 py-4 rounded-2xl font-black text-xl ${theme.primaryBtn}`}
