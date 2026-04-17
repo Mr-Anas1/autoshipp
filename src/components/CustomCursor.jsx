@@ -7,7 +7,8 @@ export default function CustomCursor() {
   const followerRef = useRef(null);
 
   useEffect(() => {
-    if (window.matchMedia('(pointer: coarse)').matches) return;
+    // Disable custom cursor on touch devices and smaller screens
+    if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768) return;
 
     const cursor = cursorRef.current;
     const follower = followerRef.current;
@@ -57,6 +58,11 @@ export default function CustomCursor() {
       window.removeEventListener('mouseover', handleHover);
     };
   }, []);
+
+  // Don't render custom cursor on smaller screens
+  if (typeof window !== 'undefined' && window.innerWidth < 768) {
+    return null;
+  }
 
   return (
     <>
