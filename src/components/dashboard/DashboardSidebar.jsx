@@ -55,8 +55,8 @@ export default function DashboardSidebar({ role }) {
         isDark ? 'border-white/[0.06]' : 'border-slate-100'
       )}>
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className={`w-8 h-8 rounded-xl bg-gradient-to-br ${meta.color} flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform`}>
-            <Zap size={16} fill="currentColor" />
+          <div className="w-8 h-8 rounded-xl overflow-hidden shadow-lg group-hover:scale-105 transition-transform">
+            <img src="/images/logo.png" alt="Autoship Logo" className="w-full h-full object-contain" />
           </div>
           <span className={cn(
             'text-lg font-black tracking-tight',

@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { gsapSmoothScroll } from '../utils/smoothScroll';
 
-export default function Header({ isScrolled, isDark, setIsDark, theme }) {
+export default function Header({ isScrolled, isDark, setIsDark, onBookDemo, theme }) {
   const headerRef = useRef(null);
   const menuRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -67,8 +67,8 @@ export default function Header({ isScrolled, isDark, setIsDark, theme }) {
 
         {/* Logo */}
         <div className="gsap-header-logo flex items-center gap-2 font-bold text-2xl tracking-tight cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${theme.accentGradient} flex items-center justify-center text-white shadow-lg`}>
-            <Zap size={20} fill="currentColor" />
+          <div className="w-9 h-9 rounded-xl overflow-hidden shadow-lg">
+            <img src="/images/logo.png" alt="Autoship Logo" className="w-full h-full object-contain" />
           </div>
           <span className={theme.heading}>Autoship</span>
         </div>
@@ -103,7 +103,10 @@ export default function Header({ isScrolled, isDark, setIsDark, theme }) {
           >
             Sign in
           </Link>
-          <button className={`hidden sm:block text-sm font-black px-8 py-3 rounded-full transition-all active:scale-95 shadow-lg ${theme.primaryBtn}`}>
+          <button
+            onClick={onBookDemo}
+            className={`hidden sm:block text-sm font-black px-8 py-3 rounded-full transition-all active:scale-95 shadow-lg ${theme.primaryBtn}`}
+          >
             Book Demo
           </button>
 

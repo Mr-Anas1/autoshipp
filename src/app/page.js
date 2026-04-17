@@ -12,6 +12,7 @@ import Footer from '../components/Footer';
 import AmbientGlows from '../components/AmbientGlows';
 import CustomCursor from '../components/CustomCursor';
 import LoadingScreen from '../components/LoadingScreen';
+import BookDemoPopup from '../components/BookDemoPopup';
 import useGSAPAnimations from '../hooks/useGSAPAnimations';
 import useSmoothScroll from '../hooks/useSmoothScroll';
 
@@ -20,6 +21,7 @@ export default function Home() {
   const [isDark, setIsDark] = useState(true);
   const [mounted, setMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [bookDemoOpen, setBookDemoOpen] = useState(false);
   const containerRef = useGSAPAnimations();
 
   useSmoothScroll({ enabled: !isLoading });
@@ -78,6 +80,7 @@ export default function Home() {
           isDark={isDark} 
           setIsDark={setIsDark} 
           theme={theme} 
+          onBookDemo={() => setBookDemoOpen(true)} 
         />
 
         <main className="relative z-10">
@@ -87,10 +90,17 @@ export default function Home() {
           <div id="how-it-works" />
           <SolutionSection theme={theme} isDark={isDark} />
           <PricingSection theme={theme} isDark={isDark} />
-          <CTASection theme={theme} isDark={isDark} />
+          <CTASection theme={theme} isDark={isDark} onBookDemo={() => setBookDemoOpen(true)} />
         </main>
 
         <Footer theme={theme} isDark={isDark} />
+        
+        {/* Book Demo Popup */}
+        <BookDemoPopup 
+          isOpen={bookDemoOpen} 
+          onClose={() => setBookDemoOpen(false)} 
+          theme={theme} 
+        />
       </div>
     </div>
   );

@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
-import { Zap, Globe, MessageCircle, Link } from 'lucide-react';
+import Link from 'next/link'; // This is the Next.js Routing component
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// Renamed 'Link' icon to 'LinkIcon' to avoid conflict with Next.js Link
+import { Zap, Globe, MessageCircle, Link as LinkIcon, Mail, Phone } from 'lucide-react';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -63,7 +65,6 @@ export default function Footer({ theme, isDark }) {
       className={`py-20 border-t transition-colors relative overflow-hidden ${isDark ? 'bg-[#05050a] border-white/5' : 'bg-slate-50 border-slate-200'
         }`}
     >
-      {/* Background Ambient Glow (Bottom Right) */}
       <div className="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] bg-violet-600/5 blur-[120px] rounded-full pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
@@ -72,8 +73,8 @@ export default function Footer({ theme, isDark }) {
           {/* Brand Info */}
           <div className="gsap-footer-col col-span-1">
             <div className={`flex items-center gap-2 ${theme.heading} font-bold text-2xl tracking-tight mb-8`}>
-              <div className={`gsap-footer-logo-icon w-9 h-9 rounded-xl bg-gradient-to-br ${theme.accentGradient} flex items-center justify-center text-white shadow-lg`}>
-                <Zap size={20} fill="currentColor" />
+              <div className="gsap-footer-logo-icon w-9 h-9 rounded-xl overflow-hidden shadow-lg">
+                <img src="/images/logo.png" alt="Autoship Logo" className="w-full h-full object-contain" />
               </div>
               Autoship
             </div>
@@ -81,7 +82,8 @@ export default function Footer({ theme, isDark }) {
               The AI-native dispatch engine for high-growth Indian D2C brands. Stop RTO, Start Profit.
             </p>
             <div className="flex items-center gap-4">
-              {[Globe, MessageCircle, Link, Link].map((Icon, idx) => (
+              {/* Used specific icons here to avoid the 'Link' variable error */}
+              {[Globe, MessageCircle, Mail, Phone].map((Icon, idx) => (
                 <div
                   key={idx}
                   className={`gsap-footer-social w-11 h-11 rounded-full flex items-center justify-center transition-all cursor-pointer border ${isDark
@@ -99,15 +101,30 @@ export default function Footer({ theme, isDark }) {
           {[
             {
               title: "Product",
-              links: ["AI Voice", "WhatsApp Flow", "Smart Carrier", "Analytics"]
+              links: [
+                { name: "AI Voice", href: "#" },
+                { name: "WhatsApp Flow", href: "#" },
+                { name: "Smart Carrier", href: "#" },
+                { name: "Analytics", href: "#" }
+              ]
             },
             {
               title: "Company",
-              links: ["About Us", "Brand Assets", "Careers", "Contact"]
+              links: [
+                { name: "About Us", href: "/about" },
+                { name: "Brand Assets", href: "#" },
+                { name: "Careers", href: "#" },
+                { name: "Contact", href: "#" }
+              ]
             },
             {
               title: "Legal",
-              links: ["Privacy Policy", "Terms of Service", "Security", "SLA"]
+              links: [
+                { name: "Privacy Policy", href: "/privacy" },
+                { name: "Terms of Service", href: "/terms" },
+                { name: "Security", href: "#" },
+                { name: "SLA", href: "#" }
+              ]
             }
           ].map((col, i) => (
             <div key={i} className="gsap-footer-col">
@@ -117,15 +134,15 @@ export default function Footer({ theme, isDark }) {
               <ul className="space-y-4">
                 {col.links.map((link, j) => (
                   <li key={j}>
-                    <a
-                      href="#"
+                    <Link
+                      href={link.href}
                       className="group flex items-center gap-0 text-slate-500 font-bold hover:text-inherit transition-all duration-300"
                     >
                       <span className={`w-0 group-hover:w-4 h-[2px] ${isDark ? 'bg-violet-500' : 'bg-blue-600'} transition-all duration-300 mr-0 group-hover:mr-2`} />
                       <span className={`transition-colors group-hover:${theme.accent}`}>
-                        {link}
+                        {link.name}
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -144,7 +161,7 @@ export default function Footer({ theme, isDark }) {
 
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
-              <span className={`relative flex h-2 w-2`}>
+              <span className="relative flex h-2 w-2">
                 <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${isDark ? 'bg-violet-400' : 'bg-emerald-400'} opacity-75`}></span>
                 <span className={`relative inline-flex rounded-full h-2 w-2 ${isDark ? 'bg-violet-500' : 'bg-emerald-500'}`}></span>
               </span>

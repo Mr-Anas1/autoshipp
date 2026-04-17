@@ -2,12 +2,14 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useState } from 'react';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export default function CTASection({ theme, isDark }) {
+export default function CTASection({ onBookDemo, theme, isDark }) {
+  const [localIsDark, setLocalIsDark] = useState(true);
   const containerRef = useRef(null);
   const bgTextRef = useRef(null);
 
@@ -106,7 +108,10 @@ export default function CTASection({ theme, isDark }) {
             </div>
 
             <div className="gsap-cta-btn w-full sm:w-auto">
-              <button className={`gsap-magnetic-btn w-full sm:w-auto font-black px-8 md:px-12 py-4 md:py-6 rounded-[1.5rem] md:rounded-[2rem] border text-lg md:text-2xl transition-all ${theme.secondaryBtn}`}>
+              <button
+                onClick={onBookDemo}
+                className={`gsap-magnetic-btn w-full sm:w-auto font-black px-8 md:px-12 py-4 md:py-6 rounded-[1.5rem] md:rounded-[2rem] border text-lg md:text-2xl transition-all ${theme.secondaryBtn}`}
+              >
                 Book Demo
               </button>
             </div>
